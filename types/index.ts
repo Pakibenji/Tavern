@@ -6,9 +6,19 @@ export interface ThreadType {
     date: Date;
 }
 
+export interface ThreadProps {
+    threads: ThreadType;
+}
+
 export interface NewThreadProps {
     setThreadTitle : (title: string) => void;
     setThreadContent : (content: string) => void;
     setThreadAuthor : (author: string) => void;
     handleCreateThread: () => void;
 }
+
+export interface ThreadDetailProps {
+    params: {
+      id: string;
+    };
+  }
