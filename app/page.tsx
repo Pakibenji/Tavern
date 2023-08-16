@@ -19,7 +19,7 @@ export default function Home() {
           title: threadTitle,
           content: threadContent,
           author: threadAuthor,
-          date: new Date(),
+          date: Date.now,
         }),
       }); 
       if (res.ok) {
