@@ -18,18 +18,19 @@ export default function Home() {
         body: JSON.stringify({
           title: threadTitle,
           content: threadContent,
+          author: threadAuthor,
           date: new Date(),
-    }    ),
+        }),
       }); 
       if (res.ok) {
         setThreadTitle('')
         setThreadContent('')
-        getThreads()
       }
     } catch (error) {
       console.error(error)
     }
   };
+
 
   const getThreads = async () => {
     try {
@@ -51,7 +52,7 @@ export default function Home() {
       <NewThread setThreadAuthor={setThreadAuthor} setThreadContent={setThreadContent} setThreadTitle={setThreadTitle} handleCreateThread={handleCreateThread}/>
       <div>
         {allThreads.length > 0 && allThreads.map((threads: ThreadType ) => (
-          <Thread key={threads._id} threads={threads}/>
+          <Thread key={threads._id} threads={threads} />
         ))}
       </div>
     </main>

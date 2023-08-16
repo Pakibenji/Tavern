@@ -20,5 +20,7 @@ export interface NewThreadProps {
 export interface ThreadDetailProps {
     params: {
       id: string;
+      title?: string;
+    content?: string;
     };
   }

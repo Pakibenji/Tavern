@@ -6,7 +6,7 @@ const NewThread = ({setThreadAuthor, setThreadContent, setThreadTitle, handleCre
     return (
         <div className='new-thread'>
             <h2>Create a new thread</h2>
-            <form onSubmit={handleCreateThread}>
+            <form onSubmit={() => handleCreateThread()}>
                 <label htmlFor='title'>Title</label>
                 <input type='text' id='title' onChange={(e) => setThreadTitle(e.target.value)} />
                 <label htmlFor='content'>Content</label>
