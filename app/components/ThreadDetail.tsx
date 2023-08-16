@@ -73,7 +73,7 @@ const ThreadDetail = ({
             <h1>{title}</h1>
             <p>{content}</p>
             <p>{author}</p>
-            <p>{date}</p>
+            {/* <p>{date}</p> */}
             <button onClick={() => setIsEditing(true)}>Edit</button>
           </div>
         )}
