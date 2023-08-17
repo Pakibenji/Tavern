@@ -24,3 +24,18 @@ export interface ThreadDetailProps {
     content?: string;
     };
   }
+
+  export interface UserType {
+    _id: string;
+    email: string;
+    password: string;
+    date: Date;
+    accessToken: string;
+}
+
+  export interface LoginProps {
+    email: string;
+    password: string;
+    confirmPassword?: string;
+    task: string;
+  }

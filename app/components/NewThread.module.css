@@ -1,0 +1,27 @@
+.new-thread {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 0;
+}
+
+.new-thread h2 {
+    margin: 0;
+    font-size: 3rem;
+}
+
+
+.new-thread form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.new-thread form input {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1.5rem;
+}

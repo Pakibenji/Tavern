@@ -51,7 +51,7 @@ export default function Home() {
     <main>
       <NewThread setThreadAuthor={setThreadAuthor} setThreadContent={setThreadContent} setThreadTitle={setThreadTitle} handleCreateThread={handleCreateThread}/>
       <div>
-        {allThreads.length > 0 && allThreads.map((threads: ThreadType ) => (
+        { allThreads && allThreads.length > 0 && allThreads.map((threads: ThreadType ) => (
           <Thread key={threads._id} threads={threads} />
         ))}
       </div>

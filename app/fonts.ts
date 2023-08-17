@@ -1,7 +1,7 @@
 import { Lato, Homenaje, Adamina } from "next/font/google";
 
 export const lato = Lato({
-  weight: "700",
+  weight: ["900","700","400"],
   subsets: ["latin"],
   display: "swap",
 });

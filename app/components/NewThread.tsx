@@ -1,11 +1,12 @@
 import React from 'react';
-
+import styles from './NewThread.module.css'
+import { homenaje } from '@app/fonts';
 import { NewThreadProps } from '@types';
 
 const NewThread = ({setThreadAuthor, setThreadContent, setThreadTitle, handleCreateThread}: NewThreadProps ) => {
     return (
-        <div className='new-thread'>
-            <h2>Create a new thread</h2>
+        <div className={styles['new-thread']}>
+            <h2 style={homenaje.style}>NEW THREAD</h2>
             <form onSubmit={() => handleCreateThread()}>
                 <label htmlFor='title'>Title</label>
                 <input type='text' id='title' onChange={(e) => setThreadTitle(e.target.value)} />
