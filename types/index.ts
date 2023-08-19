@@ -11,7 +11,6 @@ export interface ThreadProps {
 export interface NewThreadProps {
   setThreadTitle: (title: string) => void;
   setThreadContent: (content: string) => void;
-  setThreadAuthor: (author: string) => void;
   handleCreateThread: () => void;
 }
 export interface ThreadDetailProps {
@@ -32,11 +31,13 @@ export interface UserContextType{
   email: string;
   uid: string;
   jwt: string;
+  pseudo?: string;
 }
 
 export interface authContextType{
   user: UserContextType;
   loginSession: (user: UserContextType) => void;
   logoutSession: () => void;
+  isLogin: boolean;
 }
 

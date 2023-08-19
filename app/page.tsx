@@ -2,14 +2,15 @@
 
 import {ThreadType } from "@types";
 import NewThread from "./components/NewThread";
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import Thread from "./components/Thread";
+import { AuthContext } from "./context/AuthContext";
 
 export default function Home() {
   const [threadTitle, setThreadTitle] = useState('')
   const [threadContent, setThreadContent] = useState('')
-  const [threadAuthor, setThreadAuthor] = useState('')
   const [allThreads, setAllThreads] = useState([])
+  const { user, isLogin } = useContext(AuthContext)
 
   const handleCreateThread = async () => {
     try {
@@ -18,7 +19,7 @@ export default function Home() {
         body: JSON.stringify({
           title: threadTitle,
           content: threadContent,
-          author: threadAuthor,
+          author: user.email,
           date: Date.now,
         }),
       }); 
@@ -49,7 +50,7 @@ export default function Home() {
 
   return (
     <main>
-      <NewThread setThreadAuthor={setThreadAuthor} setThreadContent={setThreadContent} setThreadTitle={setThreadTitle} handleCreateThread={handleCreateThread}/>
+      { isLogin && <NewThread setThreadContent={setThreadContent} setThreadTitle={setThreadTitle} handleCreateThread={handleCreateThread}/>}
       <div>
         { allThreads && allThreads.length > 0 && allThreads.map((threads: ThreadType ) => (
           <Thread key={threads._id} threads={threads} />

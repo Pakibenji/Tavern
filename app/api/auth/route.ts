@@ -4,7 +4,6 @@ import {
   } from "@firebase/auth";
   import { NextResponse } from "next/server";
   import { auth } from "./firebase-config";
-  import { UserType } from "@types";
   
   export async function POST(request: Request) {
     const { email, password, task } = await request.json();
@@ -15,10 +14,6 @@ import {
           email,
           password
         );
-        console.log({
-          token: credentials.user.accesToken,
-          uuid: credentials.user.uid,
-        });
         console.log({ credentials });
         return NextResponse.json({
           status: 200,
@@ -30,8 +25,7 @@ import {
             status: 500,
             message: "Sorry, this email is already in use",
           });
-        }
-  
+        } 
         if (err.code.includes("auth/weak-password")) {
           return NextResponse.json({
             status: 500,
@@ -53,7 +47,7 @@ import {
           message: `Welcome back ${email}`,
           email,
           uid: credentials.user.uid,
-          jwt: credentials.user.accessToken,
+          jwt: credentials.user.getIdToken(),
         });
       } catch (err: any) {
         if (err.code.includes("auth/wrong-password")) {
@@ -65,7 +59,7 @@ import {
         if (err.code.includes("auth/user not found")) {
           return NextResponse.json({
             status: 500,
-            message: `No user founc with this email ${email}`,
+            message: `No user found with this email ${email}`,
           });
         }
         return NextResponse.json({

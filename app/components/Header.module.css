@@ -18,7 +18,7 @@
 
 .link-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: right;
     width: 30%;
     margin-right: 2rem;
 }

@@ -1,7 +1,8 @@
 "use client";
 import { ThreadType } from "@types";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useRouter } from "next/navigation";
+import { AuthContext } from "../context/AuthContext";
 
 const ThreadDetail = ({
   title,
@@ -14,7 +15,14 @@ const ThreadDetail = ({
   const [isEditing, setIsEditing] = useState(false);
   const [editedTitle, setEditedTitle] = useState(title);
   const [editedContent, setEditedContent] = useState(content);
+  const { user } = useContext(AuthContext);
+
+
   const handleDeleteThread = async (id: string) => {
+    if ( user.email !== author ) {
+      alert("You are not the author of this thread");
+      return;
+    }
     try {
       const res = await fetch(`/api/thread/delete/${id}`, {
         method: "DELETE",
@@ -29,6 +37,10 @@ const ThreadDetail = ({
   };
 
   const handleEditThread = async (id: string) => {
+    if (user.email !== author) {
+      alert("You are not the author of this thread");
+      return;
+    }
     try {
       const res = await fetch(`/api/thread/edit/${id}`, {
         method: "PATCH",
@@ -73,12 +85,13 @@ const ThreadDetail = ({
             <h1>{title}</h1>
             <p>{content}</p>
             <p>{author}</p>
-            {/* <p>{date}</p> */}
-            <button onClick={() => setIsEditing(true)}>Edit</button>
+            { user && user.email === author && <button onClick={() => setIsEditing(true)}>Edit</button>
+            }
           </div>
         )}
       </div>
-      <button onClick={() => handleDeleteThread(_id)}>Delete</button>
+      { user && user.email === author && <button onClick={() => handleDeleteThread(_id)}>Delete</button>
+      }
     </div>
   );
 };

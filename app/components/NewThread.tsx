@@ -3,7 +3,7 @@ import styles from './NewThread.module.css'
 import { homenaje } from '@app/fonts';
 import { NewThreadProps } from '@types';
 
-const NewThread = ({setThreadAuthor, setThreadContent, setThreadTitle, handleCreateThread}: NewThreadProps ) => {
+const NewThread = ({setThreadContent, setThreadTitle, handleCreateThread}: NewThreadProps ) => {
     return (
         <div className={styles['new-thread']}>
             <h2 style={homenaje.style}>NEW THREAD</h2>

@@ -1,6 +1,7 @@
 "use client";
 import { UserContextType, authContextType} from "@types";
 import React, { createContext, useState, useEffect } from "react";
+import { useRouter} from "next/navigation";
 
 type Props = {
   children: React.ReactNode;
@@ -15,6 +16,7 @@ export const AuthContextDefaultValues: authContextType = {
     },
   loginSession: (user: UserContextType) => {},
   logoutSession: () => {},
+  isLogin: false
 };
 
 export const AuthContext = createContext<authContextType>(
@@ -25,15 +27,20 @@ export const AuthProvider = ({ children }: Props) => {
   const [user, setUser] = useState<UserContextType>(
     AuthContextDefaultValues.user
   );
+  const [isLogin, setIsLogin] = useState<boolean>(false);
+  const router = useRouter();
 
   const loginSession= (user: UserContextType) => {
     setUser(user);
     saveSession(user);
+    setIsLogin(true);
   }
 
   const logoutSession = () => {
     setUser(AuthContextDefaultValues.user);
     destroySession();
+    setIsLogin(false);
+    router.push("/");
   }
 
   const userSession = () => {
@@ -41,6 +48,10 @@ export const AuthProvider = ({ children }: Props) => {
     if (userSession) {
       const user = JSON.parse(userSession);
       setUser(user);
+      setIsLogin(true);
+    } else {
+      setUser(AuthContextDefaultValues.user);
+      setIsLogin(false);
     }
   };
 
@@ -61,7 +72,8 @@ export const AuthProvider = ({ children }: Props) => {
       value={{
         user,
         loginSession,
-        logoutSession
+        logoutSession,
+        isLogin
       }}
     >
       {children}
