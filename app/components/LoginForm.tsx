@@ -1,9 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { useState} from "react";
+import { useState,  useContext } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { LoginProps } from "@types";
+import { AuthContext } from "../context/AuthContext";
+import { useRouter } from "next/navigation";
 
 async function loginUser( data: LoginProps) {
   const URL = "http://localhost:3000/api/auth";
@@ -24,6 +26,8 @@ export default function LoginForm() {
   const [message, setMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [hasError, setHasError] = useState(false);
+  const { loginSession } =  useContext(AuthContext);
+  const router = useRouter();
 
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -37,11 +41,14 @@ export default function LoginForm() {
     const response = await loginUser({ email, password, task: "login" });
     const responseJson = await response.json();
     if (responseJson.status === 200) {
+      loginSession({ email: responseJson.email, uid: responseJson.uid, jwt: responseJson.jwt});
       setEmail("");
       setPassword("");
       setMessage(responseJson.message);
+      
       setTimeout(() => {
         setMessage("");
+        router.push("/profile");
       }, 2000);
     } else {
       setHasError(true);

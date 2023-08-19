@@ -10,7 +10,6 @@ const threadSchema = new Schema<ThreadType>({
     author: {
         type: String,
         default: 'Anonymous',
-        
     },
     content: {
         type: String,
