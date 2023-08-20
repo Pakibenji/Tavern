@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import './global.css'
 import Header from './components/Header'
-import { adamina } from './fonts'
+import { paragraph } from './fonts'
 import { AuthProvider } from './context/AuthContext'
 
 export const metadata: Metadata = {
@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       
-      <body style={adamina.style}>
+      <body style={paragraph.style}>
       <AuthProvider>
       <Header />
       {children}

@@ -1,5 +1,14 @@
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    --main-color: #3498db;
+    --secondary-color: #f39c12;
+    --black: #000000;
+    --white: #ffffff;
+}
+
+body {
+    background: var(--main-color)
 }

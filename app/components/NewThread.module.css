@@ -1,16 +1,16 @@
 .new-thread {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    margin: 1rem 0;
+    justify-content: center;
+    margin: 0 auto;
+    width: 100%;
+    background: var(--white);
 }
 
 .new-thread h2 {
-    margin: 0;
-    font-size: 3rem;
+    font-size: 2rem;
 }
-
 
 .new-thread form {
     display: flex;
@@ -18,20 +18,35 @@
     justify-content: center;
     align-items: center;
     width: 100%;
+    background: var(--secondary-color);
 }
 
 .new-thread form input {
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1.5rem;
-    text-align: center;
+    width: 50%;
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 0.5rem;
 }
 
-.new-thread textarea {
-    resize: none;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 0.8rem;
-    width: 80%;
-    height: 3rem;
+.new-thread form input::placeholder {
+    font-size: 1.2rem;
+    align-items: center;
+    text-align: center;
+    color: var(--black);
+}
+
+.new-thread form textarea {
+    width: 75%;
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 0.5rem;
+}
+
+.new-thread form textarea::placeholder {
+    font-size: 1.2rem;
+    align-items: center;
+    text-align: center;
+    color: var(--black);
 }
