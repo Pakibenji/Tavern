@@ -14,7 +14,7 @@ const page = () => {
         try {
           const res = await fetch('/api/thread/all')
           const data = await res.json()
-            const userThreads = data.filter((thread: ThreadType) => thread.author === user.email)
+            const userThreads = data.filter((thread: ThreadType) => thread.author === user.displayName)
             setUserThreads(userThreads)
         } catch (error) {
           console.error(error)

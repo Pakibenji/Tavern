@@ -3,8 +3,33 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 0 auto;
-    width: 100%;
-    border: 1px solid #ccc;
+    margin: 1rem auto;
+    width: 80%;
     flex-wrap: wrap;
+    border: 1px solid var(--main-color);
+    border-radius: 5px;
+    max-width: 800px;
+    max-height: 200px;
+}
+
+.thread:nth-child(odd) {
+    background: var(--main-color);
+    color: var(--white);
+
+}
+.content {
+    width: 100%;
+    padding: 1rem 0 0 1rem;
+}
+
+.author {
+    display: flex;
+    justify-content: right;
+    width: 100%;
+    font-size: 1rem;
+    padding-right:  1rem;
+}
+
+.author-paragraph {
+    color: blue;
 }

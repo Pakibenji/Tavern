@@ -5,6 +5,7 @@
     justify-content: center;
     margin: 0 auto;
     width: 100%;
+    background: var(--main-color);
 }
 
 .new-thread form {
@@ -13,7 +14,7 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    background: var(--main-color);
+    max-width: 920px;
 }
 
 .new-thread form textarea {
