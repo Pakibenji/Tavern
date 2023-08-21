@@ -5,8 +5,8 @@ import { NextResponse } from "next/server";
 export const POST = async (request: Request) => {
     await connectToDb()
     try {
-        const { title, content, author, date } = await request.json()
-        const thread = await Thread.create({ title, content, author, date})
+        const {content, author, date } = await request.json()
+        const thread = await Thread.create({ content, author, date})
         return NextResponse.json(
             thread,
             { status: 201 }

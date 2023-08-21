@@ -1,12 +1,14 @@
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
+    sendEmailVerification,
+    updateProfile,
   } from "@firebase/auth";
   import { NextResponse } from "next/server";
   import { auth } from "./firebase-config";
   
   export async function POST(request: Request) {
-    const { email, password, task } = await request.json();
+    const { displayName, email, password, task } = await request.json();
     if (task === "register") {
       try {
         const credentials = await createUserWithEmailAndPassword(
@@ -14,10 +16,15 @@ import {
           email,
           password
         );
+        await sendEmailVerification(credentials.user);
+        await updateProfile(credentials.user, {
+          displayName: displayName,
+        });
+
         console.log({ credentials });
         return NextResponse.json({
           status: 200,
-          message: `account for ${email} created`,
+          message: `account for ${displayName} created`,
         });
       } catch (err: any) {
         if (err.code.includes("email-already-in-use")) {
@@ -25,8 +32,8 @@ import {
             status: 500,
             message: "Sorry, this email is already in use",
           });
-        } 
-        if (err.code.includes("auth/weak-password")) {
+        }
+       if (err.code.includes("auth/weak-password")) {
           return NextResponse.json({
             status: 500,
             message: "Sorry, the password should be at least 6 character",
@@ -48,6 +55,7 @@ import {
           email,
           uid: credentials.user.uid,
           jwt: credentials.user.getIdToken(),
+          displayName: credentials.user.displayName,
         });
       } catch (err: any) {
         if (err.code.includes("auth/wrong-password")) {

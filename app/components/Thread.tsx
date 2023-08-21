@@ -1,16 +1,19 @@
-import React from "react";
+'use client'
+import React, { useContext} from "react";
 import { ThreadProps } from "@types";
 import Link from "next/link";
-import { littleTitle } from "@app/fonts";
+import styles from "./Thread.module.css";
+import { AuthContext } from "@app/context/AuthContext";
 
 const Thread = ({ threads }: ThreadProps) => {
-  const { title, content, author, _id } = threads;
+  const { content, author, _id } = threads;
+  const { user } = useContext(AuthContext);
   return (
-    <div>
-      <h2 style={littleTitle.style}>{title}</h2>
+    <div className={styles.thread}>
       <p>{content}</p>
       <p>{author}</p>
-      <Link href={`/thread/${_id}`}>Details</Link>
+      {user.email === author && (
+        <Link href={`/thread/${_id}`}>Details</Link>)}
     </div>
   );
 };

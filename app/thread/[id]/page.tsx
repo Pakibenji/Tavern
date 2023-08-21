@@ -7,12 +7,11 @@ const page = async ({ params }: ThreadDetailProps) => {
   const { id } = params;
   const thread = await fetch(`http://localhost:3000/api/thread/${id}`);
   const data = await thread.json();
-  const { title, content, author, createdAt } = data;
+  const { content, author, createdAt } = data;
 
   return (
     <div>
       <ThreadDetail
-        title={title}
         content={content}
         author={author}
         date={createdAt}

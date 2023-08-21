@@ -1,10 +1,10 @@
 'use client';
 import React, {useState} from 'react';
 import styles from './NewThread.module.css'
-import { littleTitle } from '@app/fonts';
+import { bigTitle } from '@app/fonts';
 import { NewThreadProps } from '@types';
 
-const NewThread = ({setThreadContent, setThreadTitle, handleCreateThread}: NewThreadProps ) => {
+const NewThread = ({setThreadContent, handleCreateThread}: NewThreadProps ) => {
     const [showtextarea, setShowtextarea] = useState(false);
 
     const handleShowTextarea = () => {
@@ -13,11 +13,9 @@ const NewThread = ({setThreadContent, setThreadTitle, handleCreateThread}: NewTh
 
     return (
         <div className={styles['new-thread']}>
-            <h2 style={littleTitle.style}>NEW THREAD</h2>
             <form onSubmit={() => handleCreateThread()}>
-                <input type='text' id='title' placeholder="TITLE" onClick={() => handleShowTextarea()} onChange={(e) => setThreadTitle(e.target.value)} />
-                { showtextarea && <textarea id='content' placeholder='CONTENT' onChange={(e) => setThreadContent(e.target.value)} /> }
-                { showtextarea && <button type='submit'>POST</button>}
+                <textarea id='content' placeholder='SPEAK'  style={bigTitle.style} onClick={() => handleShowTextarea()}  onChange={(e) => setThreadContent(e.target.value)} /> 
+                { showtextarea && <button type='submit' style={bigTitle.style}>POST</button>}
             </form>
         </div>
     );

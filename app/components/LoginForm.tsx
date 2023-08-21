@@ -41,7 +41,7 @@ export default function LoginForm() {
     const response = await loginUser({ email, password, task: "login" });
     const responseJson = await response.json();
     if (responseJson.status === 200) {
-      loginSession({ email: responseJson.email, uid: responseJson.uid, jwt: responseJson.jwt});
+      loginSession({ email: responseJson.email, uid: responseJson.uid, jwt: responseJson.jwt, displayName: responseJson.displayName});
       setEmail("");
       setPassword("");
       setMessage(responseJson.message);

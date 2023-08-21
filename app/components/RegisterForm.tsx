@@ -21,6 +21,7 @@ async function registerUser(data: LoginProps) {
 export default function RegisterForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [displayName, setDisplayName] = useState("");
   const [confirm, setConfirm] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [hasError, setHasError] = useState(false);
@@ -43,12 +44,13 @@ export default function RegisterForm() {
     setMessage("");
     setHasError(false);
 
-    const response = await registerUser({ email, password, task: "register" });
+    const response = await registerUser({ displayName, email, password, task: "register" });
     const responseJson = await response.json();
     if (responseJson.status === 200) {
       setEmail("");
       setPassword("");
       setConfirm("")
+      setDisplayName("");
       setMessage(`${responseJson.message}`);
       setTimeout(() => {
         setMessage("");
@@ -73,7 +75,13 @@ export default function RegisterForm() {
             value={email}
             onInput={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
           />
-
+          <label htmlFor="displayName">Name</label>
+          <input
+            type="text"
+            id="displayName"
+            value={displayName}
+            onInput={(e: React.ChangeEvent<HTMLInputElement>) => setDisplayName(e.target.value)}
+          />
           <label htmlFor="password">Password</label>
           <div className="pass-eye">
           <input

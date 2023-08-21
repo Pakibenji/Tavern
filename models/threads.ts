@@ -3,13 +3,9 @@ import { Schema, model, models } from 'mongoose';
 import { ThreadType } from '@types';
 
 const threadSchema = new Schema<ThreadType>({
-    title: {
-        type: String,
-        required: [true, 'Title is Required'],
-},
     author: {
         type: String,
-        default: 'Anonymous',
+        required: [true, 'Author is Required'],
     },
     content: {
         type: String,

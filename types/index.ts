@@ -1,6 +1,5 @@
 export interface ThreadType {
   _id: string;
-  title: string;
   author: string;
   content: string;
   date: Date;
@@ -9,14 +8,12 @@ export interface ThreadProps {
   threads: ThreadType;
 }
 export interface NewThreadProps {
-  setThreadTitle: (title: string) => void;
   setThreadContent: (content: string) => void;
   handleCreateThread: () => void;
 }
 export interface ThreadDetailProps {
   params: {
     id: string;
-    title?: string;
     content?: string;
   };
 }
@@ -31,7 +28,8 @@ export interface UserContextType{
   email: string;
   uid: string;
   jwt: string;
-  pseudo?: string;
+  displayName: string;
+  photoUrl?: string;
 }
 
 export interface authContextType{

@@ -13,6 +13,7 @@ export const AuthContextDefaultValues: authContextType = {
       email: "",
       uid: "",
       jwt: "",
+      displayName: "",
     },
   loginSession: (user: UserContextType) => {},
   logoutSession: () => {},

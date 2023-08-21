@@ -29,10 +29,12 @@ const page = () => {
     }
     }, [])
 
+
+
     return (
         <div>
             {isLogin && <div><h1>Profile</h1>
-            <p>{user.email}</p>
+            <p>{user.displayName}</p>
             <h3>My Threads</h3>
             {userThreads && userThreads.length > 0 && userThreads.map((thread: ThreadType) => (
                 <Thread key={thread._id} threads={thread} />

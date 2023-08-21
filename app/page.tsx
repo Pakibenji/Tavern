@@ -7,24 +7,23 @@ import Thread from "./components/Thread";
 import { AuthContext } from "./context/AuthContext";
 
 export default function Home() {
-  const [threadTitle, setThreadTitle] = useState('')
   const [threadContent, setThreadContent] = useState('')
   const [allThreads, setAllThreads] = useState([])
   const { user, isLogin } = useContext(AuthContext)
 
   const handleCreateThread = async () => {
+      if (threadContent === '')
+        return alert('Please enter a message')
     try {
       const res = await fetch('/api/thread/new', {
         method: 'POST',
         body: JSON.stringify({
-          title: threadTitle,
           content: threadContent,
-          author: user.email,
+          author: user.displayName,
           date: Date.now,
         }),
       }); 
       if (res.ok) {
-        setThreadTitle('')
         setThreadContent('')
       }
     } catch (error) {
@@ -50,7 +49,7 @@ export default function Home() {
 
   return (
     <main>
-      { isLogin && <NewThread setThreadContent={setThreadContent} setThreadTitle={setThreadTitle} handleCreateThread={handleCreateThread}/>}
+      { isLogin && <NewThread setThreadContent={setThreadContent} handleCreateThread={handleCreateThread}/>}
       <div>
         { allThreads && allThreads.length > 0 && allThreads.map((threads: ThreadType ) => (
           <Thread key={threads._id} threads={threads} />
@@ -59,3 +58,5 @@ export default function Home() {
     </main>
   )
 }
+
+

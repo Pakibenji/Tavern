@@ -5,8 +5,6 @@ import Link from "next/link";
 import { bigTitle, littleTitle } from "@app/fonts";
 import { useContext } from "react";
 import { AuthContext } from "@app/context/AuthContext";
-import Image from "next/image";
-import logoImg from "../../public/assets/img/logo.webp";
 
 const Header = () => {
   const { isLogin, user } = useContext(AuthContext);
@@ -17,8 +15,8 @@ const Header = () => {
       </Link>
       <div className={ isLogin ? styles.login : styles["link-container"]}>
         {isLogin ? (
-          <Link href="/profile" style={littleTitle.style}>
-            {user.email[0].toUpperCase()}
+          <Link href="/profile" style={bigTitle.style}>
+            {user.displayName[0].toUpperCase()}
           </Link>
         ) : (
           <div className={styles.notlogin}>
@@ -31,6 +29,7 @@ const Header = () => {
           </div>
         )}
       </div>
+        <h2 style={littleTitle.style}>To Speak Truth</h2>
     </header>
   );
 };
