@@ -13,7 +13,7 @@ const NewThread = ({setThreadContent, handleCreateThread}: NewThreadProps ) => {
 
     return (
         <div className={styles['new-thread']}>
-            <form onSubmit={() => handleCreateThread()}>
+            <form onSubmit={handleCreateThread}>
                 <textarea id='content' placeholder='SPEAK'  style={bigTitle.style} onClick={() => handleShowTextarea()}  onChange={(e) => setThreadContent(e.target.value)} /> 
                 { showtextarea && <button type='submit' style={bigTitle.style}>POST</button>}
             </form>

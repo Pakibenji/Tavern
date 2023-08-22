@@ -30,7 +30,6 @@ const page = () => {
     }, [])
 
 
-
     return (
         <div>
             {isLogin && <div><h1>Profile</h1>

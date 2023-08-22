@@ -3,13 +3,14 @@ export interface ThreadType {
   author: string;
   content: string;
   date: Date;
+  comments?: CommentType[];
 }
 export interface ThreadProps {
   threads: ThreadType;
 }
 export interface NewThreadProps {
   setThreadContent: (content: string) => void;
-  handleCreateThread: () => void;
+  handleCreateThread: (e: React.FormEvent<HTMLFormElement>) => void;
 }
 export interface ThreadDetailProps {
   params: {
@@ -20,6 +21,7 @@ export interface ThreadDetailProps {
 export interface LoginProps {
   email: string;
   password: string;
+  displayName?: string;
   confirmPassword?: string;
   task: string;
 }
@@ -38,4 +40,24 @@ export interface authContextType{
   logoutSession: () => void;
   isLogin: boolean;
 }
+
+export interface CommentType {
+  _id: string;
+  content: string;
+  author: string;
+  date: Date;
+  threadId: string;
+}
+
+export interface CommentProps {
+  params: {
+    id: string;
+  };
+}
+
+export interface CommentTypeProps {
+  comments: CommentType;
+}
+
+
 

@@ -1,8 +1,8 @@
 'use client'
 
-import {ThreadType } from "@types";
+import {ThreadType, CommentType } from "@types";
 import NewThread from "./components/NewThread";
-import { useState, useEffect, useContext } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import Thread from "./components/Thread";
 import { AuthContext } from "./context/AuthContext";
 
@@ -11,7 +11,8 @@ export default function Home() {
   const [allThreads, setAllThreads] = useState([])
   const { user, isLogin } = useContext(AuthContext)
 
-  const handleCreateThread = async () => {
+  const handleCreateThread = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
       if (threadContent === '')
         return alert('Please enter a message')
     try {
@@ -25,6 +26,7 @@ export default function Home() {
       }); 
       if (res.ok) {
         setThreadContent('')
+        getThreads()
       }
     } catch (error) {
       console.error(error)
@@ -36,7 +38,10 @@ export default function Home() {
     try {
       const res = await fetch('/api/thread/all')
       const data = await res.json()
-      setAllThreads(data)
+      const sortedData = data.sort((a: ThreadType, b: ThreadType) => {
+        return new Date(b.date).getTime() - new Date(a.date).getTime()
+      })
+      setAllThreads(sortedData)
     } catch (error) {
       console.error(error)
     }
@@ -46,12 +51,12 @@ export default function Home() {
     getThreads()
   }, [])
 
-
+    
   return (
     <main>
       { isLogin && <NewThread setThreadContent={setThreadContent} handleCreateThread={handleCreateThread}/>}
       <div>
-        { allThreads && allThreads.length > 0 && allThreads.map((threads: ThreadType ) => (
+        { allThreads && allThreads.length > 0 && allThreads.map((threads: ThreadType) => (
           <Thread key={threads._id} threads={threads} />
         ))}
       </div>
