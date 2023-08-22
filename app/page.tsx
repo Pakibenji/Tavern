@@ -15,6 +15,8 @@ export default function Home() {
     e.preventDefault()
       if (threadContent === '')
         return alert('Please enter a message')
+      if (threadContent.length > 250 )
+        return alert('250 characters max')
     try {
       const res = await fetch('/api/thread/new', {
         method: 'POST',
@@ -32,7 +34,6 @@ export default function Home() {
       console.error(error)
     }
   };
-
 
   const getThreads = async () => {
     try {

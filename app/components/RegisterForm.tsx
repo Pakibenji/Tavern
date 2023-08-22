@@ -29,13 +29,11 @@ export default function RegisterForm() {
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-
     if ((email === "") || (password === "") || (confirm === "")) {
       setMessage("Please fill all fields");
       setHasError(true);
       return
     }
-
     if (password !== confirm) {
       setMessage("Password and Confirm Password are different");
       setHasError(true);

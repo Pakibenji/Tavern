@@ -1,0 +1,13 @@
+.profil {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.profil h1 {
+    background: var(--main-color);
+    width: 100%;
+    color: var(--white);
+    text-align: center;
+}

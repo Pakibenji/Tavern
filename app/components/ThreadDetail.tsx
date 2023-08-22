@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import { AuthContext } from "../context/AuthContext";
 
 const ThreadDetail = ({
-  title,
   content,
   author,
   _id,
@@ -13,13 +12,12 @@ const ThreadDetail = ({
 }: ThreadType) => {
   const router = useRouter();
   const [isEditing, setIsEditing] = useState(false);
-  const [editedTitle, setEditedTitle] = useState(title);
   const [editedContent, setEditedContent] = useState(content);
   const { user } = useContext(AuthContext);
 
 
   const handleDeleteThread = async (id: string) => {
-    if ( user.email !== author ) {
+    if ( user.displayName !== author ) {
       alert("You are not the author of this thread");
       return;
     }
@@ -37,7 +35,7 @@ const ThreadDetail = ({
   };
 
   const handleEditThread = async (id: string) => {
-    if (user.email !== author) {
+    if (user.displayName !== author) {
       alert("You are not the author of this thread");
       return;
     }
@@ -45,7 +43,6 @@ const ThreadDetail = ({
       const res = await fetch(`/api/thread/edit/${id}`, {
         method: "PATCH",
         body: JSON.stringify({
-          title: editedTitle,
           content: editedContent,
         }),
         headers: {
@@ -66,12 +63,6 @@ const ThreadDetail = ({
       <div className="thread-detail-container">
         {isEditing ? (
           <div>
-            <input
-              type="text"
-              placeholder="title"
-              value={editedTitle}
-              onChange={(e) => setEditedTitle(e.target.value)}
-            />
             <textarea
             placeholder="content"
               value={editedContent}
@@ -82,15 +73,14 @@ const ThreadDetail = ({
           </div>
         ) : (
           <div>
-            <h1>{title}</h1>
             <p>{content}</p>
             <p>{author}</p>
-            { user && user.email === author && <button onClick={() => setIsEditing(true)}>Edit</button>
+            { user && user.displayName === author && <button onClick={() => setIsEditing(true)}>Edit</button>
             }
           </div>
         )}
       </div>
-      { user && user.email === author && <button onClick={() => handleDeleteThread(_id)}>Delete</button>
+      { user && user.displayName === author && <button onClick={() => handleDeleteThread(_id)}>Delete</button>
       }
     </div>
   );

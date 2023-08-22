@@ -1,0 +1,6 @@
+.comment-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: black;
+}
