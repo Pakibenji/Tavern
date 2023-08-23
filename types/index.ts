@@ -60,4 +60,10 @@ export interface CommentTypeProps {
 }
 
 
+export interface NewCommentProps {
+  setCommentsContent: (content: string) => void;
+  handleCreateComment: (e: React.FormEvent<HTMLFormElement>) => void;
+  setIsComment: (isComment: boolean) => void;
+}
+
 

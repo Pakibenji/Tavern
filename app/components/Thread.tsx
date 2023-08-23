@@ -4,8 +4,11 @@ import { ThreadProps, CommentType } from "@types";
 import Link from "next/link";
 import styles from "./Thread.module.css";
 import { AuthContext } from "@app/context/AuthContext";
-import { bigTitle, littleTitle } from "@app/fonts";
+import { littleTitle, dateFont } from "@app/fonts";
 import Comment from "./Comment";
+import NewComment from "./NewComment";
+import { RiQuestionAnswerFill } from "react-icons/ri";
+import { BiSolidCommentAdd } from "react-icons/bi";
 
 const Thread = ({ threads }: ThreadProps) => {
   const { content, author, _id } = threads;
@@ -28,10 +31,8 @@ const Thread = ({ threads }: ThreadProps) => {
 
   const handleCreateComment = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (commentsContent === '')
-        return alert('Please enter a message')
-      if (commentsContent.length > 250 )
-        return alert('250 characters max')
+    if (commentsContent === "") return alert("Please enter a message");
+    if (commentsContent.length > 250) return alert("250 characters max");
     try {
       const res = await fetch("/api/comments/new", {
         method: "POST",
@@ -56,7 +57,10 @@ const Thread = ({ threads }: ThreadProps) => {
     try {
       const res = await fetch(`http://localhost:3000/api/comments/${id}`);
       const data = await res.json();
-      setThreadComments(data);
+      const sortedData = data.sort((a: CommentType, b: CommentType) => {
+        return new Date(b.date).getTime() - new Date(a.date).getTime();
+      });
+      setThreadComments(sortedData);
     } catch (error) {
       console.error(error);
     }
@@ -73,7 +77,6 @@ const Thread = ({ threads }: ThreadProps) => {
   useEffect(() => {
     getsComments();
   }, []);
-
   return (
     <div className={styles.thread}>
       <p className={styles.content}>{content}</p>
@@ -87,29 +90,7 @@ const Thread = ({ threads }: ThreadProps) => {
           {author}
         </p>
       )}
-      <p>{new Date(threads.date).toLocaleString("FR-fr")}</p>
-      <div className={styles["btn-container"]}>
-        {isAuthor && (
-          <Link href={`/thread/${_id}`} className={styles.btn} > Detail
-          </Link>
-        )}
-        <button onClick={handleComment} className={styles.btn}>
-          Comment
-        </button>
-        <button onClick={() => showComment()} className={styles.btn}>
-          show Comments
-        </button>
-      </div>
-      {isComment && (
-        <form onSubmit={handleCreateComment}>
-          <textarea
-          style={bigTitle.style}
-            placeholder="SPEAK"
-            onChange={(e) => setCommentsContent(e.target.value)}
-          />
-          <button type="submit" style={bigTitle.style}>REPLY</button>
-        </form>
-      )}
+      <p style={dateFont.style}>{new Date(threads.date).toLocaleString("FR-fr")}</p>
       {showComments && (
         <div>
           {threadComments &&
@@ -118,6 +99,28 @@ const Thread = ({ threads }: ThreadProps) => {
               <Comment key={comments._id} comments={comments} />
             ))}
         </div>
+      )}
+      <div className={styles["btn-container"]}>
+        {isAuthor && (
+          <Link href={`/thread/${_id}`} className={styles.btn}>
+            {" "}
+            Detail
+          </Link>
+        )}
+        <BiSolidCommentAdd
+          onClick={handleComment}
+          className={isComment ? styles.none : ""}
+        />
+        <span onClick={() => showComment()} style={dateFont.style}>
+          {threadComments && threadComments.length} <RiQuestionAnswerFill />
+        </span>
+      </div>
+      {isComment && (
+        <NewComment
+          setCommentsContent={setCommentsContent}
+          handleCreateComment={handleCreateComment}
+          setIsComment={setIsComment}
+        />
       )}
     </div>
   );

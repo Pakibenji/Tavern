@@ -1,6 +1,13 @@
-.comment-container {
+.comment {
     display: flex;
+    width: 80%;
     flex-direction: column;
-    justify-content: center;
+    justify-content: left;
+    align-items: center;
     color: black;
+    background: var(--white);
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }

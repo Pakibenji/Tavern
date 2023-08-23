@@ -1,4 +1,4 @@
-import { Lato, Raleway, Roboto} from "next/font/google";
+import { Lato, Raleway, Roboto, Bebas_Neue} from "next/font/google";
 
 
 export const bigTitle = Raleway({
@@ -15,6 +15,12 @@ export const littleTitle = Lato({
 
 export const paragraph = Roboto({
   weight: "300",
+  subsets: ["latin"],
+  display: "swap"
+})
+
+export const dateFont = Bebas_Neue({
+  weight: "400",
   subsets: ["latin"],
   display: "swap"
 })

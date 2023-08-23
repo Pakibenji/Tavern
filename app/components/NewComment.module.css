@@ -1,0 +1,36 @@
+.newComment {
+  background: var(--main-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.newComment textarea {
+  width: 75%;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  resize: none;
+  text-align: center;
+}
+
+.newComment textarea::placeholder {
+  align-items: center;
+  text-align: center;
+  color: var(--black);
+  font-size: 1.5rem;
+}
+
+.newComment button {
+  width: 25%;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  background: var(--secondary-color);
+  color: var(--black);
+  font-size: 1rem;
+}

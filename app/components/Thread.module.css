@@ -9,15 +9,17 @@
   border: 1px solid var(--main-color);
   border-radius: 5px;
   max-width: 800px;
+  background: var(--main-color);
 }
 
-.thread:nth-child(odd) {
-  background: var(--main-color);
-  color: var(--white);
-}
 .content {
-  width: 100%;
-  padding: 1rem 1rem 0 1rem;
+  width: 90%;
+  margin: 1rem auto;
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+  background: var(--white);
+  border-radius: 45px;
+  text-align: center;
 }
 
 .author {
@@ -27,6 +29,7 @@
   font-size: 1rem;
   padding-right: 1rem;
 }
+
 
 .btn-container {
   display: flex;
@@ -49,45 +52,14 @@
   width: 30%;
   margin: 0.5rem 0;
   padding: 0.5rem;
-  border: none;
+  border: 1px solid var(--secondary-color) ;
+  box-shadow: 0 0 5px inset var(--main-color) ;
   border-radius: 0.5rem;
-  background: var(--secondary-color);
+  background: var(--white);
   color: var(--black);
 }
 
-.thread form {
-  background: var(--main-color);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
+.none {
+  display: none;
 }
 
-.thread form textarea {
-  width: 75%;
-  margin: 0.5rem 0;
-  padding: 0.5rem;
-  border: none;
-  border-radius: 0.5rem;
-  resize: none;
-  text-align: center;
-}
-
-.thread form textarea::placeholder {
-  align-items: center;
-  text-align: center;
-  color: var(--black);
-  font-size: 1.5rem;
-}
-
-.thread form button {
-  width: 25%;
-  margin: 0.5rem 0;
-  padding: 0.5rem;
-  border: none;
-  border-radius: 0.5rem;
-  background: var(--secondary-color);
-  color: var(--black);
-  font-size: 1.2rem;
-}

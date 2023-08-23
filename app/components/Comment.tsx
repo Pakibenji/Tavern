@@ -47,7 +47,7 @@ const Comment = ({ comments }: CommentTypeProps) => {
   };
 
   return (
-    <div key={_id} className={styles["comment-container"]}>
+    <div key={_id} className={styles.comment}>
       <p>{content}</p>
       <p>{author}</p>
       <p>{new Date(date).toLocaleString("FR-fr")}</p>

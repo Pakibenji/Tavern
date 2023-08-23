@@ -56,11 +56,11 @@ export default function Home() {
   return (
     <main>
       { isLogin && <NewThread setThreadContent={setThreadContent} handleCreateThread={handleCreateThread}/>}
-      <div>
+      <>
         { allThreads && allThreads.length > 0 && allThreads.map((threads: ThreadType) => (
           <Thread key={threads._id} threads={threads} />
         ))}
-      </div>
+      </>
     </main>
   )
 }
