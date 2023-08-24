@@ -56,7 +56,7 @@ const Thread = ({ threads }: ThreadProps) => {
   const getsComments = async () => {
     const id = _id;
     try {
-      const res = await fetch(`http://localhost:3000/api/comments/${id}`);
+      const res = await fetch(`/api/comments/${id}`);
       const data = await res.json();
       const sortedData = data.sort((a: CommentType, b: CommentType) => {
         return new Date(b.date).getTime() - new Date(a.date).getTime();
