@@ -18,7 +18,7 @@ export default function Home() {
       if (threadContent.length > 250 )
         return alert('250 characters max')
     try {
-      const res = await fetch('/api/thread/new', {
+      const res = await fetch('https://tavern-phi.vercel.app/api/thread/new', {
         method: 'POST',
         body: JSON.stringify({
           content: threadContent,
