@@ -8,7 +8,7 @@ import { AuthContext } from "../context/AuthContext";
 import { useRouter } from "next/navigation";
 
 async function loginUser( data: LoginProps) {
-  const URL = "https://tavern-phi.vercel.app/api/auth";
+  const URL = "/api/auth";
   const options = {
     method: "POST",
     headers: {

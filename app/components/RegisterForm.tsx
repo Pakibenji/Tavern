@@ -6,7 +6,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { LoginProps } from "@types";
 
 async function registerUser(data: LoginProps) {
-  const URL = "http://localhost:3000/api/auth";
+  const URL = "/api/auth";
   const options = {
     method: "POST",
     headers: {
