@@ -1,3 +1,4 @@
+'use client';
 import React from "react";
 import { ThreadDetailProps } from "@types";
 import ThreadDetail from "@app/components/ThreadDetail";
