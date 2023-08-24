@@ -9,6 +9,7 @@ import Comment from "./Comment";
 import NewComment from "./NewComment";
 import { RiQuestionAnswerFill } from "react-icons/ri";
 import { BiSolidCommentAdd } from "react-icons/bi";
+import { AiTwotoneEdit } from "react-icons/ai";
 
 const Thread = ({ threads }: ThreadProps) => {
   const { content, author, _id } = threads;
@@ -77,6 +78,7 @@ const Thread = ({ threads }: ThreadProps) => {
   useEffect(() => {
     getsComments();
   }, []);
+
   return (
     <div className={styles.thread}>
       <p className={styles.content}>{content}</p>
@@ -96,24 +98,24 @@ const Thread = ({ threads }: ThreadProps) => {
           {threadComments &&
             threadComments.length > 0 &&
             threadComments.map((comments: CommentType) => (
-              <Comment key={comments._id} comments={comments} />
+              <Comment key={comments._id} comments={comments} getsComments={getsComments}/>
             ))}
         </div>
       )}
-      <div className={styles["btn-container"]}>
+      <div className={styles.link}>
         {isAuthor && (
-          <Link href={`/thread/${_id}`} className={styles.btn}>
+          <Link href={`/thread/${_id}`}>
             {" "}
-            Detail
+            <AiTwotoneEdit />
           </Link>
         )}
         <BiSolidCommentAdd
           onClick={handleComment}
           className={isComment ? styles.none : ""}
         />
-        <span onClick={() => showComment()} style={dateFont.style}>
-          {threadComments && threadComments.length} <RiQuestionAnswerFill />
-        </span>
+        <div onClick={() => showComment()} style={dateFont.style}>
+          {threadComments && threadComments.length} <RiQuestionAnswerFill/>
+        </div>
       </div>
       {isComment && (
         <NewComment

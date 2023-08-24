@@ -48,7 +48,7 @@ export default function LoginForm() {
       
       setTimeout(() => {
         setMessage("");
-        router.push("/profile");
+        router.push("/");
       }, 2000);
     } else {
       setHasError(true);

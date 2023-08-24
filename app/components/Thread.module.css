@@ -20,6 +20,7 @@
   background: var(--white);
   border-radius: 45px;
   text-align: center;
+  word-break: break-all;
 }
 
 .author {
@@ -30,33 +31,18 @@
   padding-right: 1rem;
 }
 
-
-.btn-container {
+.link {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 100%;
+  width: 75%;
   justify-content: space-around;
   margin: 1rem auto;
+  color: var(--white);
+  font-size: 1.5rem;
 }
 
-.btn-container a {
-  display: flex;
+.link a {
   text-decoration: none;
-  justify-content: center;
-  text-align: center;
-  align-items: center;
-}
-
-.btn {
-  width: 30%;
-  margin: 0.5rem 0;
-  padding: 0.5rem;
-  border: 1px solid var(--secondary-color) ;
-  box-shadow: 0 0 5px inset var(--main-color) ;
-  border-radius: 0.5rem;
-  background: var(--white);
-  color: var(--black);
+  color: var(--white);
 }
 
 .none {

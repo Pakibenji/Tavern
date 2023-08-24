@@ -1,13 +1,67 @@
 .comment {
-    display: flex;
-    width: 80%;
-    flex-direction: column;
-    justify-content: left;
-    align-items: center;
-    color: black;
-    background: var(--white);
-    border-radius: 5px;
-    padding: 10px;
-    margin: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem auto;
+  width: 80%;
+  flex-wrap: wrap;
+  border: 1px solid var(--main-color);
+  border-radius: 5px;
+  max-width: 800px;
+  background: var(--main-color);
 }
+
+.content {
+  width: 90%;
+  margin: 1rem auto;
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+  background: var(--white);
+  border-radius: 45px;
+  text-align: center;
+  word-break: break-all;
+}
+
+.author {
+  display: flex;
+  justify-content: right;
+  width: 100%;
+  font-size: 1rem;
+  padding-right: 1rem;
+}
+
+.comment textarea {
+  width: 75%;
+  margin: 0.5rem 0 0.5rem 1rem;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  resize: none;
+  text-align: center;
+}
+
+.comment textarea::placeholder {
+  align-items: center;
+  text-align: center;
+  color: var(--black);
+  font-size: 1.5rem;
+}
+
+.comment svg {
+  width: 10%;
+  font-size: 2rem;
+  color: var(--white);
+}
+
+.comment button {
+  width: 25%;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  background: var(--secondary-color);
+  color: var(--black);
+  font-size: 1rem;
+}
+

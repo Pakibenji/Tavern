@@ -1,7 +1,8 @@
 .newComment {
   background: var(--main-color);
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -9,7 +10,7 @@
 
 .newComment textarea {
   width: 75%;
-  margin: 0.5rem 0;
+  margin: 0.5rem 0 0.5rem 1rem;
   padding: 0.5rem;
   border: none;
   border-radius: 0.5rem;
@@ -22,6 +23,12 @@
   text-align: center;
   color: var(--black);
   font-size: 1.5rem;
+}
+
+.newComment svg {
+  width: 10%;
+  font-size: 2rem;
+  color: var(--white);
 }
 
 .newComment button {

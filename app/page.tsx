@@ -1,6 +1,6 @@
 'use client'
 
-import {ThreadType, CommentType } from "@types";
+import {ThreadType} from "@types";
 import NewThread from "./components/NewThread";
 import React, { useState, useEffect, useContext } from "react"
 import Thread from "./components/Thread";
@@ -55,7 +55,7 @@ export default function Home() {
     
   return (
     <main>
-      { isLogin && <NewThread setThreadContent={setThreadContent} handleCreateThread={handleCreateThread}/>}
+      { isLogin && <NewThread setThreadContent={setThreadContent} handleCreateThread={handleCreateThread} threadContent={threadContent} />}
       <>
         { allThreads && allThreads.length > 0 && allThreads.map((threads: ThreadType) => (
           <Thread key={threads._id} threads={threads} />

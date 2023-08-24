@@ -10,6 +10,7 @@ export interface ThreadProps {
 }
 export interface NewThreadProps {
   setThreadContent: (content: string) => void;
+  threadContent: string;
   handleCreateThread: (e: React.FormEvent<HTMLFormElement>) => void;
 }
 export interface ThreadDetailProps {
@@ -57,6 +58,7 @@ export interface CommentProps {
 
 export interface CommentTypeProps {
   comments: CommentType;
+  getsComments: () => void;
 }
 
 

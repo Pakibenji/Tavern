@@ -1,10 +1,14 @@
 "use client";
-import React, { useContext, useState } from "react";
+import React, { useContext, useState} from "react";
 import { CommentTypeProps } from "@types";
 import { AuthContext } from "@app/context/AuthContext";
 import styles from "./Comment.module.css"
+import { littleTitle, dateFont, bigTitle } from "@app/fonts";
+import { BiSolidCommentEdit } from "react-icons/bi";
+import { RiChatDeleteFill } from "react-icons/ri";
+import { IoIosClose } from "react-icons/io";
 
-const Comment = ({ comments }: CommentTypeProps) => {
+const Comment = ({ comments, getsComments }: CommentTypeProps) => {
   const { user } = useContext(AuthContext);
   const { _id, content, author, date } = comments;
   const [editedComment, setEditedComment] = useState(content);
@@ -17,6 +21,7 @@ const Comment = ({ comments }: CommentTypeProps) => {
       });
       if (response.ok) {
         console.log("Comment deleted");
+        getsComments();
       }
     } catch (error) {
       console.error(error);
@@ -36,6 +41,7 @@ const Comment = ({ comments }: CommentTypeProps) => {
       });
       if (response.ok) {
         console.log("Comment edited");
+        getsComments();
       }
     } catch (error) {
       console.error(error);
@@ -48,11 +54,11 @@ const Comment = ({ comments }: CommentTypeProps) => {
 
   return (
     <div key={_id} className={styles.comment}>
-      <p>{content}</p>
-      <p>{author}</p>
-      <p>{new Date(date).toLocaleString("FR-fr")}</p>
+      <p className={styles.content}>{content}</p>
+      <p style={littleTitle.style} className={styles.author}>{author}</p>
+      <p style={dateFont.style}>{new Date(date).toLocaleString("FR-fr")}</p>
       {user && user.displayName === author && !isEdit && (
-        <button onClick={() => isEditComment()}>Edit</button>
+        < BiSolidCommentEdit onClick={() => isEditComment()} />
       )}
       {isEdit && (
         <form onSubmit={() => handleEditComment(_id)}>
@@ -60,11 +66,14 @@ const Comment = ({ comments }: CommentTypeProps) => {
             placeholder="SPEAK"
             onChange={(e) => setEditedComment(e.target.value)}
           />
-          <input type="submit" />
+          < IoIosClose onClick={() => isEditComment()} />
+          <button type="submit" style={bigTitle.style}>
+          REPLY
+        </button>
         </form>
       )}
       {user && user.displayName === author && (
-        <button onClick={() => handleDeleteComment(_id)}>Delete</button>
+        < RiChatDeleteFill onClick={() => handleDeleteComment(_id)} />
       )}
     </div>
   );

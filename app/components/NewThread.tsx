@@ -4,7 +4,7 @@ import styles from './NewThread.module.css'
 import { bigTitle } from '@app/fonts';
 import { NewThreadProps } from '@types';
 
-const NewThread = ({setThreadContent, handleCreateThread}: NewThreadProps ) => {
+const NewThread = ({setThreadContent, threadContent, handleCreateThread}: NewThreadProps ) => {
     const [showtextarea, setShowtextarea] = useState(false);
 
     const handleShowTextarea = () => {
@@ -14,7 +14,7 @@ const NewThread = ({setThreadContent, handleCreateThread}: NewThreadProps ) => {
     return (
         <div className={styles['new-thread']}>
             <form onSubmit={handleCreateThread}>
-                <textarea id='content' placeholder='SPEAK'  style={bigTitle.style} onClick={() => handleShowTextarea()}  onChange={(e) => setThreadContent(e.target.value)} /> 
+                <textarea id='content' placeholder='SPEAK' value={threadContent} style={bigTitle.style} onClick={() => handleShowTextarea()}  onChange={(e) => setThreadContent(e.target.value)} /> 
                 { showtextarea && <button type='submit' style={bigTitle.style}>POST</button>}
             </form>
         </div>
