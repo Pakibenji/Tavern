@@ -38,18 +38,18 @@
 }
 
 .login a {
-    color: var(--black);
+    color: var(--grey);
     border: 2px solid var(--secondary-color);
     border-radius:50%;
     padding: 0.3rem 0.8rem;
-    box-shadow: 0 0 0.5rem inset var(--main-color);
+    box-shadow: 0 0 0.5rem inset var(--secondary-color);
 }
 
 .header h2 {
   width: 80%;
   font-size: 1.1rem;
   text-align: right;
-  color: var(--black);
+  color: var(--grey);
   background: linear-gradient(
     90deg,
     var(--main-color) 0%,

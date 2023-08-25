@@ -41,6 +41,16 @@
   border: none;
   border-radius: 0.5rem;
   background: var(--secondary-color);
-  color: var(--black);
+  color: var(--white);
   font-size: 1.2rem;
+  transition: all 0.4s ease-in-out;
+}
+.new-thread form button:hover {
+  cursor: pointer;
+}
+
+.new-thread form button:active {
+  cursor: pointer;
+  box-shadow: 0px 0 10px 10px inset var(--grey);
+  color: var(--black);
 }

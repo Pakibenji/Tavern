@@ -1,8 +1,9 @@
 :root {
-    --main-color: #3498db;
-    --secondary-color: #f39c12;
+    --main-color: #008080;
+    --secondary-color: #ff7f7f;
     --black: #000000;
     --white: #ffffff;
+    --grey: #404040;
 }
 * {
     box-sizing: border-box;

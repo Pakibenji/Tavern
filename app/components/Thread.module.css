@@ -4,12 +4,12 @@
   align-items: center;
   justify-content: center;
   margin: 1rem auto;
-  width: 80%;
+  width: 90%;
   flex-wrap: wrap;
   border: 1px solid var(--main-color);
   border-radius: 5px;
-  max-width: 800px;
-  background: var(--main-color);
+  max-width: 1200px;
+  background: var(--white);
 }
 
 .content {
@@ -19,6 +19,7 @@
   font-size: 1rem;
   background: var(--white);
   border-radius: 45px;
+  border: 1px solid var(--main-color);
   text-align: center;
   word-break: break-all;
 }
@@ -33,16 +34,25 @@
 
 .link {
   display: flex;
-  width: 75%;
+  width: 100%;
   justify-content: space-around;
-  margin: 1rem auto;
+  padding: 1rem auto;
   color: var(--white);
   font-size: 1.5rem;
+  background: var(--main-color);
+  align-items: center;
+}
+
+.link div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .link a {
   text-decoration: none;
   color: var(--white);
+  align-items: center;
 }
 
 .none {
