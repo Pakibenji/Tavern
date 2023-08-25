@@ -19,3 +19,5 @@ export const GET = async (request: Request) => {
         )
     }
 }
+
+export const revalidate = 0;
