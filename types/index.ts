@@ -22,7 +22,7 @@ export interface ThreadDetailProps {
 export interface LoginProps {
   email: string;
   password: string;
-  displayName?: string;
+  displayName: string;
   confirmPassword?: string;
   task: string;
 }

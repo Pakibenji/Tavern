@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { LoginProps } from "@types";
+import Router from "next/router";
 
 async function registerUser(data: LoginProps) {
   const URL = "/api/auth";
@@ -50,6 +51,7 @@ export default function RegisterForm() {
       setConfirm("")
       setDisplayName("");
       setMessage(`${responseJson.message}`);
+      Router.push("/login");
       setTimeout(() => {
         setMessage("");
       }, 2000);

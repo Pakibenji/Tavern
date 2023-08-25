@@ -24,6 +24,7 @@ export default function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const [displayName, setDisplayName] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [hasError, setHasError] = useState(false);
   const { loginSession } =  useContext(AuthContext);
@@ -38,7 +39,7 @@ export default function LoginForm() {
       return;
     }
     setHasError(false);
-    const response = await loginUser({ email, password, task: "login" });
+    const response = await loginUser({ email, password, displayName, task: "login" });
     const responseJson = await response.json();
     if (responseJson.status === 200) {
       loginSession({ email: responseJson.email, uid: responseJson.uid, jwt: responseJson.jwt, displayName: responseJson.displayName});
