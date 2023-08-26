@@ -58,10 +58,7 @@ const Thread = ({ threads }: ThreadProps) => {
     try {
       const res = await fetch(`/api/comments/${id}`);
       const data = await res.json();
-      const sortedData = data.sort((a: CommentType, b: CommentType) => {
-        return new Date(b.date).getTime() - new Date(a.date).getTime();
-      });
-      setThreadComments(sortedData);
+      setThreadComments(data);
     } catch (error) {
       console.error(error);
     }
@@ -94,7 +91,7 @@ const Thread = ({ threads }: ThreadProps) => {
       )}
       <p style={dateFont.style}>{new Date(threads.date).toLocaleString("FR-fr")}</p>
       {showComments && (
-        <div>
+        <div className={styles.commentContainer}>
           {threadComments &&
             threadComments.length > 0 &&
             threadComments.map((comments: CommentType) => (

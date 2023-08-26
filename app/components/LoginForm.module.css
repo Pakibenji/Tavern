@@ -1,0 +1,72 @@
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 75%;
+  margin: 1rem auto 0 auto;
+  border-radius: 5px;
+  border: 1px solid var(--main-color);
+  max-width: 800px;
+}
+
+.formContainer label {
+  font-size: 1rem;
+  margin: 1rem 0;
+}
+
+.passEye {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+}
+
+.passEye svg {
+  margin-left: -2rem;
+  cursor: pointer;
+}
+
+.email {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--main-color);
+  border-radius: 5px;
+  text-align: center;
+}
+
+.password {
+  display: block;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--main-color);
+  border-radius: 5px;
+  text-align: center;
+}
+
+.btn {
+  margin: 1rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  background: var(--main-color);
+  color: var(--white);
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.account {
+  text-align: center;
+  margin: 1rem;
+  font-size: 1rem;
+}
+
+.error {
+  color: red;
+  font-size: 1rem;
+  margin: 0.5rem;
+}
+
+.ok {
+  color: green;
+  font-size: 1rem;
+  margin: 0.5rem;
+}

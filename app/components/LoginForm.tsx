@@ -1,13 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { useState,  useContext } from "react";
+import { useState, useContext } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { LoginProps } from "@types";
 import { AuthContext } from "../context/AuthContext";
 import { useRouter } from "next/navigation";
+import styles from "./LoginForm.module.css";
 
-async function loginUser( data: LoginProps) {
+async function loginUser(data: LoginProps) {
   const URL = "/api/auth";
   const options = {
     method: "POST",
@@ -27,9 +28,8 @@ export default function LoginForm() {
   const [displayName, setDisplayName] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [hasError, setHasError] = useState(false);
-  const { loginSession } =  useContext(AuthContext);
+  const { loginSession } = useContext(AuthContext);
   const router = useRouter();
-
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -39,14 +39,24 @@ export default function LoginForm() {
       return;
     }
     setHasError(false);
-    const response = await loginUser({ email, password, displayName, task: "login" });
+    const response = await loginUser({
+      email,
+      password,
+      displayName,
+      task: "login",
+    });
     const responseJson = await response.json();
     if (responseJson.status === 200) {
-      loginSession({ email: responseJson.email, uid: responseJson.uid, jwt: responseJson.jwt, displayName: responseJson.displayName});
+      loginSession({
+        email: responseJson.email,
+        uid: responseJson.uid,
+        jwt: responseJson.jwt,
+        displayName: responseJson.displayName,
+      });
       setEmail("");
       setPassword("");
       setMessage(responseJson.message);
-      
+
       setTimeout(() => {
         setMessage("");
         router.push("/");
@@ -63,31 +73,38 @@ export default function LoginForm() {
 
   return (
     <>
-      <div className="form-container">
-        <form onSubmit={handleSubmit} className="form">
-          <label htmlFor="email">Email</label>
+      <form onSubmit={handleSubmit} className={styles.formContainer}>
+        <label htmlFor="email">Email</label>
+        <input
+          type="text"
+          id="email"
+          value={email}
+          className={styles.email}
+          onInput={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setEmail(e.target.value)
+          }
+        />
+        <label htmlFor="password">Password</label>
+        <div className={styles.passEye}>
           <input
-            type="text"
-            id="email"
-            value={email}
-            onInput={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
-          />
-          <label htmlFor="password">Password</label>
-          <div className="pass-eye">
-            <input
-              type={showPassword ? "text" : "password"}
-              id="password"
-              value={password}
-              onInput={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
-            />{" "}
-            {showPassword && <FaEyeSlash onClick={toggleShow} />}
-            {!showPassword && <FaEye onClick={toggleShow} />}
-          </div>
-          <input type="submit" value="login" className="btn" />
-        </form>
+            type={showPassword ? "text" : "password"}
+            id="password"
+            value={password}
+            className={styles.password}
+            onInput={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setPassword(e.target.value)
+            }
+          />{" "}
+          {showPassword && <FaEyeSlash onClick={toggleShow} />}
+          {!showPassword && <FaEye onClick={toggleShow} />}
+        </div>
+        <input type="submit" value="login" className={styles.btn} />
+      </form>
+      <div className={styles.account}>
+        <span>No account yet? </span>{" "}
+        <Link href="/register"> Go to register page</Link>
+        {message && <div className={hasError ? styles.error : styles.ok }>{message}</div>}
       </div>
-      No account yet? <Link href="/register">Go to register page</Link>
-      {message && <div className={hasError ? "error" : "ok" }>{message}</div>}
     </>
   );
 }

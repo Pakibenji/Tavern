@@ -2,6 +2,8 @@
 import React from "react";
 import { ThreadDetailProps } from "@types";
 import ThreadDetail from "@app/components/ThreadDetail";
+import { littleTitle } from "@app/fonts";
+
 
 
 const page = async ({ params }: ThreadDetailProps) => {
@@ -11,14 +13,15 @@ const page = async ({ params }: ThreadDetailProps) => {
   const { content, author, createdAt } = data;
 
   return (
-    <div>
+    <>
+    <h2 style={littleTitle.style}>THREAD</h2>
       <ThreadDetail
         content={content}
         author={author}
         date={createdAt}
         _id={id}
       />
-    </div>
+    </>
   );
 
 };
