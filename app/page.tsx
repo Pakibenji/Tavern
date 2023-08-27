@@ -39,8 +39,6 @@ export default function Home() {
     try {
       const res = await fetch('/api/thread/all')
       const data = await res.json()
-      console.log(data);
-      
       const sortedData = data.sort((a: ThreadType, b: ThreadType) => {
         return new Date(b.date).getTime() - new Date(a.date).getTime()
       })
@@ -52,7 +50,6 @@ export default function Home() {
 
   useEffect(() => {
     getThreads()
-    console.log(allThreads);
     
   }, [])
 

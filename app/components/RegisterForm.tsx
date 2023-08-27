@@ -5,6 +5,7 @@ import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { LoginProps } from "@types";
 import Router from "next/router";
+import styles from "./RegisterForm.module.css";
 
 async function registerUser(data: LoginProps) {
   const URL = "/api/auth";
@@ -30,10 +31,10 @@ export default function RegisterForm() {
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if ((email === "") || (password === "") || (confirm === "")) {
+    if (email === "" || password === "" || confirm === "") {
       setMessage("Please fill all fields");
       setHasError(true);
-      return
+      return;
     }
     if (password !== confirm) {
       setMessage("Password and Confirm Password are different");
@@ -43,12 +44,17 @@ export default function RegisterForm() {
     setMessage("");
     setHasError(false);
 
-    const response = await registerUser({ displayName, email, password, task: "register" });
+    const response = await registerUser({
+      displayName,
+      email,
+      password,
+      task: "register",
+    });
     const responseJson = await response.json();
     if (responseJson.status === 200) {
       setEmail("");
       setPassword("");
-      setConfirm("")
+      setConfirm("");
       setDisplayName("");
       setMessage(`${responseJson.message}`);
       Router.push("/login");
@@ -56,7 +62,7 @@ export default function RegisterForm() {
         setMessage("");
       }, 2000);
     } else {
-      setHasError(true)
+      setHasError(true);
       setMessage(responseJson.message);
     }
   }
@@ -66,46 +72,59 @@ export default function RegisterForm() {
   }
   return (
     <>
-      <div className="form-container">
-        <form className="form" onSubmit={handleSubmit}>
-          <label htmlFor="email">Email</label>
+      <form className={styles.formContainer} onSubmit={handleSubmit}>
+        <label htmlFor="email">Email</label>
+        <input
+          type="text"
+          id="email"
+          value={email}
+          className={styles.email}
+          onInput={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setEmail(e.target.value)
+          }
+        />
+        <label htmlFor="displayName">Name</label>
+        <input
+          type="text"
+          id="displayName"
+          value={displayName}
+          className={styles.email}
+          onInput={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setDisplayName(e.target.value)
+          }
+        />
+        <label htmlFor="password">Password</label>
+        <div className={styles.passEye}>
           <input
-            type="text"
-            id="email"
-            value={email}
-            onInput={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
-          />
-          <label htmlFor="displayName">Name</label>
-          <input
-            type="text"
-            id="displayName"
-            value={displayName}
-            onInput={(e: React.ChangeEvent<HTMLInputElement>) => setDisplayName(e.target.value)}
-          />
-          <label htmlFor="password">Password</label>
-          <div className="pass-eye">
-          <input
-            type={showPassword ? 'text' : "password"}
+            type={showPassword ? "text" : "password"}
             id="password"
             value={password}
-            onInput={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
-          />{' '}
-          {showPassword && <FaEyeSlash onClick={toggleShow}/>}
-          {!showPassword && <FaEye onClick={toggleShow}/>}
-          </div>
-          <div className="pass-eye">
+            className={styles.password}
+            onInput={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setPassword(e.target.value)
+            }
+          />{" "}
+          {showPassword && <FaEyeSlash onClick={toggleShow} />}
+          {!showPassword && <FaEye onClick={toggleShow} />}
+        </div>
+        <div className="pass-eye">
           <input
-            type={showPassword ? 'text' : "password"}
+            type={showPassword ? "text" : "password"}
             id="confirm"
             value={confirm}
-            onInput={(e: React.ChangeEvent<HTMLInputElement>) => setConfirm(e.target.value)}
+            className={styles.passwordConfirm}
+            onInput={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setConfirm(e.target.value)
+            }
           />
-          </div>
-          <input type="submit" value="Create" className="btn" />
-        </form>
-      </div>
-      Already have an account? <Link href="/login">Login</Link>
-      {message && <div className={hasError ? "error" : "ok" }>{message}</div>}
+        </div>
+        <input type="submit" value="Create" className={styles.btn} />
+      </form>
+      <div className={styles.account}> <span>Already have an account?</span>{" "} <Link href="/login">Login</Link>
+      {message && (
+        <div className={hasError ? styles.error : styles.ok}>{message}</div>
+      )}</div>
+      
     </>
   );
 }

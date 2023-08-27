@@ -13,7 +13,7 @@ import { AiTwotoneEdit } from "react-icons/ai";
 
 const Thread = ({ threads }: ThreadProps) => {
   const { content, author, _id } = threads;
-  const { user } = useContext(AuthContext);
+  const { user, isLogin } = useContext(AuthContext);
   const [isAuthor, setIsAuthor] = useState(false);
   const [isComment, setIsComment] = useState(false);
   const [commentsContent, setCommentsContent] = useState("");
@@ -106,10 +106,10 @@ const Thread = ({ threads }: ThreadProps) => {
             <AiTwotoneEdit />
           </Link>
         )}
-        <BiSolidCommentAdd
+        { isLogin && <BiSolidCommentAdd
           onClick={handleComment}
           className={isComment ? styles.none : ""}
-        />
+        /> }
         <div onClick={() => showComment()} style={dateFont.style}>
           {threadComments && threadComments.length} <RiQuestionAnswerFill/>
         </div>
