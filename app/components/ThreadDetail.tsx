@@ -3,21 +3,19 @@ import { ThreadType } from "@types";
 import React, { useState, useContext } from "react";
 import { useRouter } from "next/navigation";
 import { AuthContext } from "../context/AuthContext";
+import styles from "./ThreadDetail.module.css";
+import { AiTwotoneDelete, AiTwotoneEdit } from "react-icons/ai";
+import { IoIosClose } from "react-icons/io";
+import { dateFont, littleTitle } from "@app/fonts";
 
-const ThreadDetail = ({
-  content,
-  author,
-  _id,
-  date,
-}: ThreadType) => {
+const ThreadDetail = ({ content, author, _id, date }: ThreadType) => {
   const router = useRouter();
   const [isEditing, setIsEditing] = useState(false);
   const [editedContent, setEditedContent] = useState(content);
   const { user } = useContext(AuthContext);
 
-
   const handleDeleteThread = async (id: string) => {
-    if ( user.displayName !== author ) {
+    if (user.displayName !== author) {
       alert("You are not the author of this thread");
       return;
     }
@@ -59,12 +57,12 @@ const ThreadDetail = ({
   };
 
   return (
-    <div>
-      <div className="thread-detail-container">
+    <>
+      <div className={styles.threadDetail}>
         {isEditing ? (
           <div>
             <textarea
-            placeholder="content"
+              placeholder="content"
               value={editedContent}
               onChange={(e) => setEditedContent(e.target.value)}
             />
@@ -73,16 +71,25 @@ const ThreadDetail = ({
           </div>
         ) : (
           <div>
-            <p>{content}</p>
-            <p>{author}</p>
-            { user && user.displayName === author && <button onClick={() => setIsEditing(true)}>Edit</button>
-            }
+            <p className={styles.content}>{content}</p>
+            <p className={styles.author} style={littleTitle.style}>
+              {author}
+            </p>
+            <p className={styles.date} style={dateFont.style}>
+              {new Date(date).toLocaleString("FR-fr")}
+            </p>
+            <div className={styles.link}>
+              {user && user.displayName === author && (
+                <AiTwotoneEdit onClick={() => setIsEditing(true)} />
+              )}
+              {user && user.displayName === author && (
+                <AiTwotoneDelete onClick={() => handleDeleteThread(_id)} />
+              )}
+            </div>
           </div>
         )}
       </div>
-      { user && user.displayName === author && <button onClick={() => handleDeleteThread(_id)}>Delete</button>
-      }
-    </div>
+    </>
   );
 };
 
