@@ -71,3 +71,10 @@
   font-size: 1rem;
   margin: 0.5rem;
 }
+
+.forgot {
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+  font-size: 1rem;
+}

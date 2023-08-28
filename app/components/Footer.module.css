@@ -1,0 +1,14 @@
+.footer {
+    background-color: var(--main-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+.footer a {
+  color: white;
+  text-decoration: none;
+}

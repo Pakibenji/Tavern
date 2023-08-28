@@ -58,19 +58,22 @@ const ThreadDetail = ({ content, author, _id, date }: ThreadType) => {
 
   return (
     <>
-      <div className={styles.threadDetail}>
         {isEditing ? (
-          <div>
+          <div className={styles.threadDetail}>
             <textarea
+            style={littleTitle.style}
               placeholder="content"
               value={editedContent}
               onChange={(e) => setEditedContent(e.target.value)}
             />
+            <div>
+            <IoIosClose onClick={() => setIsEditing(false)} />
             <button onClick={() => setIsEditing(false)}>Cancel</button>
             <button onClick={() => handleEditThread(_id)}>Save</button>
-          </div>
+            </div>
+            </div>
         ) : (
-          <div>
+          <div className={styles.threadDetail}>
             <p className={styles.content}>{content}</p>
             <p className={styles.author} style={littleTitle.style}>
               {author}
@@ -88,7 +91,6 @@ const ThreadDetail = ({ content, author, _id, date }: ThreadType) => {
             </div>
           </div>
         )}
-      </div>
     </>
   );
 };

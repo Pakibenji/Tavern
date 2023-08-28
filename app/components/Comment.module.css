@@ -28,9 +28,18 @@
   font-size: 1rem;
   padding-right: 1rem;
 }
-
-.comment textarea {
+.comment form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  align-items: center;
+  margin: 0.5rem auto;
+}
+.comment form textarea {
   width: 75%;
+  flex-wrap: wrap;
   margin: 0.5rem 0 0.5rem 1rem;
   padding: 0.5rem;
   border: none;
@@ -53,6 +62,7 @@
 }
 
 .comment button {
+  display: flex;
   width: 25%;
   margin: 0.5rem 0;
   padding: 0.5rem;
@@ -61,4 +71,14 @@
   background: var(--secondary-color);
   color: var(--black);
   font-size: 1rem;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin: 0 auto;
+}
+
+.comment form svg {
+  width: 10%;
+  font-size: 2rem;
+  color: var(--white);
 }

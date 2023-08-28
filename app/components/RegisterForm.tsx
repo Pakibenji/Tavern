@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { LoginProps } from "@types";
-import Router from "next/router";
+import Router from "next/navigation";
 import styles from "./RegisterForm.module.css";
 
 async function registerUser(data: LoginProps) {

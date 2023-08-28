@@ -3,6 +3,7 @@ import './global.css'
 import Header from './components/Header'
 import { paragraph } from './fonts'
 import { AuthProvider } from './context/AuthContext'
+import Footer from './components/Footer'
 
 export const metadata: Metadata = {
 
@@ -23,6 +24,7 @@ export default function RootLayout({
       <Header />
       {children}
       </AuthProvider>
+      <Footer />
       </body>
       
     </html>

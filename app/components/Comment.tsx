@@ -20,7 +20,7 @@ const Comment = ({ comments, getsComments }: CommentTypeProps) => {
         method: "DELETE",
       });
       if (response.ok) {
-        console.log("Comment deleted");
+        alert("Comment deleted");
         getsComments();
       }
     } catch (error) {
@@ -28,7 +28,7 @@ const Comment = ({ comments, getsComments }: CommentTypeProps) => {
     }
   };
 
-  const handleEditComment = async (_id: string) => {
+  const handleEditComment = async (_id: string,) => {
     try {
       const response = await fetch(`api/comments/edit/${_id}`, {
         method: "PATCH",
@@ -40,7 +40,7 @@ const Comment = ({ comments, getsComments }: CommentTypeProps) => {
         },
       });
       if (response.ok) {
-        console.log("Comment edited");
+        alert("Comment edited");
         getsComments();
       }
     } catch (error) {
@@ -66,7 +66,7 @@ const Comment = ({ comments, getsComments }: CommentTypeProps) => {
             placeholder="SPEAK"
             onChange={(e) => setEditedComment(e.target.value)}
           />
-          < IoIosClose onClick={() => isEditComment()} />
+          < IoIosClose onClick={() => isEditComment()}/>
           <button type="submit" style={bigTitle.style}>
           REPLY
         </button>

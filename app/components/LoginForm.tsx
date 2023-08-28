@@ -107,6 +107,7 @@ export default function LoginForm() {
         <Link href="/register"> Go to register page</Link>
         {message && <div className={hasError ? styles.error : styles.ok }>{message}</div>}
       </div>
+      <Link href="/resetpwd" className={styles.forgot}>Password forgotten</Link>
     </>
   );
 }

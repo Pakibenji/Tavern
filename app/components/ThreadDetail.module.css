@@ -42,3 +42,13 @@
     background: var(--main-color);
     align-items: center;
   }
+
+  .threadDetail textarea {
+    width: 75%;
+    margin: 0.5rem 0 0.5rem 1rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    resize: none;
+    text-align: center;
+    font-size: 1rem;
+  }

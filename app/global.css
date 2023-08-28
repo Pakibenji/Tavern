@@ -13,4 +13,5 @@
 
 body {
     background: var(--white);
+    user-select: none;
 }
