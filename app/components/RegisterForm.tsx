@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { LoginProps } from "@types";
-import Router from "next/navigation";
+import { useRouter } from "next/navigation";
 import styles from "./RegisterForm.module.css";
 
 async function registerUser(data: LoginProps) {
@@ -28,6 +28,7 @@ export default function RegisterForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [hasError, setHasError] = useState(false);
   const [message, setMessage] = useState("");
+  const router = useRouter();
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -57,10 +58,10 @@ export default function RegisterForm() {
       setConfirm("");
       setDisplayName("");
       setMessage(`${responseJson.message}`);
-      Router.push("/login");
       setTimeout(() => {
+        router.push("/login");
         setMessage("");
-      }, 2000);
+      }, 1000);
     } else {
       setHasError(true);
       setMessage(responseJson.message);
