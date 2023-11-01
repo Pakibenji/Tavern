@@ -1,7 +1,7 @@
 ## Tavern, to speak truth
 Tavern est une application web permettant de poster des messages et de les commenter.
 
-L'application est developpée avec NextJs et utilise l'authentification de firebase et mongoDb pour la bdd.
+L'application est developpée avec NextJs, j'utilise l'authentification de firebase et mongoDb pour la bdd.
 
 Le tout est déployé sur Vercel.
 
